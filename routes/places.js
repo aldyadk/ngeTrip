@@ -27,8 +27,19 @@ router.post('/upload', upload.any(), (req, res, next) => {
     // res.send(req.files)
 })
 
-router.get('/edit/:id', {
-    // model.Place.
+router.get('/delete/:id', (req, res, next) => {
+    let id = req.params.id
+    model.Place.destroy({
+            where: {
+                id: id
+            }
+        })
+        .then(() => {
+            res.redirect('/')
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
 })
 
 module.exports = router;

@@ -39,6 +39,7 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Image</th>
+                <th colspan="2">Action</th>
             </thead>
             <tbody>
                 <%
@@ -65,10 +66,10 @@
                                 <%- place.description%>
                             </td>
                             <td>
-                                <!-- <%- place.imagePath%> -->
-                                <!-- <img src="/uploads/80bb827fe41ff7350c820cebc47c66b1" height="80" width="80"> -->
                                 <img src="<%- place.imagePath%>" alt="<%- place.placeName%>" height="100" width="100">
                             </td>
+                            <td><a href="#"><img src="/images/edit.png" alt="Edit" height="30" width="30"></a></td>
+                            <td><a href="/places/delete/<%- place.id%>"><img src="/images/delete.png" alt="Edit" height="30" width="30"></a></td>
                         </tr>
                         <%
                             no++;
