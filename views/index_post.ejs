@@ -9,23 +9,23 @@
 </head>
 
 <body>
-    <div>
-      <form action="/upload" method="GET">
-          <button type="submit" name="button">Create New Place</button>
-      </form>
-    </div>
+  <div>
+    <form action="/upload" method="POST">
+        <button type="submit" name="button">Create New Place</button>
+    </form>
+  </div>
 
-    <div>
-      <form action="/post" method="GET">
-          <button type="submit" name="button">List Post</button>
-      </form>
-    </div>
+  <div>
+    <form action="/post" method="POST">
+        <button type="submit" name="button">List Post</button>
+    </form>
+  </div>
 
-    <div>
-      <form action="/post/create" method="GET">
-          <button type="submit" name="button">Create New Post</button>
-      </form>
-    </div>
+  <div>
+    <form action="/post/create" method="POST">
+        <button type="submit" name="button">Create New Post</button>
+    </form>
+  </div>
 
     <h1><%= title %></h1>
     <p>Welcome to
@@ -39,6 +39,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Image</th>
+                <th colspan="2">Action</th>
             </thead>
             <tbody>
                 <%
@@ -67,6 +68,8 @@
                             <td>
                                 <img src="<%- post.Place.imagePath%>" alt="<%- post.Place.placeName%>" height="100" width="100">
                             </td>
+                            <td><a href="#"><img src="/images/edit.png" alt="Edit" height="30" width="30"></a></td>
+                            <td><a href="/post/delete/<%- post.id%>"><img src="/images/delete.png" alt="Edit" height="30" width="30"></a></td>
                         </tr>
                         <%
                             no++;

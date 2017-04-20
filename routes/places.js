@@ -27,8 +27,40 @@ router.post('/upload', upload.any(), (req, res, next) => {
     // res.send(req.files)
 })
 
-router.get('/edit/:id', {
-    // model.Place.
+router.get('/delete/:id', (req, res, next) => {
+    let id = req.params.id
+    model.Place.destroy({
+            where: {
+                id: id
+            }
+        })
+        .then(() => {
+            res.redirect('/')
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+})
+
+router.post('/edit/:id', upload.any(), (req, res, next) => {
+    let id = req.params.id
+    let tempUrlPath = req.files[0].path
+    let resultPath = tempUrlPath.replace('public', '')
+    model.Place.update({
+            placeName: req.body.placeName,
+            description: req.body.description,
+            imagePath: resultPath
+        }, {
+            where: {
+                id: id
+            }
+        })
+        .then(() => {
+            res.redirect('/')
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
 })
 
 module.exports = router;
