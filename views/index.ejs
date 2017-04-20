@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <div>
+      <form action="/upload" method="GET">
+          <button type="submit" name="button">Create New Place</button>
+      </form>
+    </div>
+
+    <div>
+      <form action="/post" method="GET">
+          <button type="submit" name="button">List Post</button>
+      </form>
+    </div>
+
+    <div>
+      <form action="/post/create" method="GET">
+          <button type="submit" name="button">Create New Post</button>
+      </form>
+    </div>
+
+    <h1><%= title %></h1>
+    <p>Welcome to
+        <%= title %>
+    </p>
+
+    <div>
+        <table>
+            <thead>
+                <th>No</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Image</th>
+            </thead>
+            <tbody>
+                <%
+              if (places.length < 1) {
+              %>
+                    <tr>
+                        <td>
+                            <p class="flow-text">Tidak ada data</p>
+                        </td>
+                    </tr>
+                    <%
+              } else {
+                let no = 1;
+                places.forEach(place => {
+              %>
+                        <tr>
+                            <td>
+                                <%- no%>
+                            </td>
+                            <td>
+                                <%- place.placeName%>
+                            </td>
+                            <td>
+                                <%- place.description%>
+                            </td>
+                            <td>
+                                <!-- <%- place.imagePath%> -->
+                                <!-- <img src="/uploads/80bb827fe41ff7350c820cebc47c66b1" height="80" width="80"> -->
+                                <img src="<%- place.imagePath%>" alt="<%- place.placeName%>" height="100" width="100">
+                            </td>
+                        </tr>
+                        <%
+                            no++;
+                          })
+                        }
+                        %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <div>
+      <form action="/upload" method="GET">
+          <button type="submit" name="button">Create New Place</button>
+      </form>
+    </div>
+
+    <div>
+      <form action="/post" method="GET">
+          <button type="submit" name="button">List Post</button>
+      </form>
+    </div>
+
+    <div>
+      <form action="/post/create" method="GET">
+          <button type="submit" name="button">Create New Post</button>
+      </form>
+    </div>
+
+    <h1><%= title %></h1>
+    <p>Welcome to
+        <%= title %>
+    </p>
+
+    <div>
+        <table>
+            <thead>
+                <th>No</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image</th>
+            </thead>
+            <tbody>
+                <%
+              if (dataPosts.length < 1) {
+              %>
+                    <tr>
+                        <td>
+                            <p class="flow-text">Tidak ada data</p>
+                        </td>
+                    </tr>
+                    <%
+              } else {
+                let no = 1;
+                dataPosts.forEach(post => {
+              %>
+                        <tr>
+                            <td>
+                                <%- no%>
+                            </td>
+                            <td>
+                                <%- post.title%>
+                            </td>
+                            <td>
+                                <%- post.description%>
+                            </td>
+                            <td>
+                                <img src="<%- post.Place.imagePath%>" alt="<%- post.Place.placeName%>" height="100" width="100">
+                            </td>
+                        </tr>
+                        <%
+                            no++;
+                          })
+                        }
+                        %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
