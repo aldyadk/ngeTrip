@@ -3,7 +3,7 @@ var router = express.Router();
 var model = require('../models')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
     model.Post.findAll({
             include: [{
                 model: model.Place
@@ -11,7 +11,6 @@ router.get('/', function(req, res, next) {
             order: '"updatedAt" DESC'
         })
         .then(posts => {
-
             // console.log('Cobaaaaaaaa' + posts[5].Place);
             res.render('index_post', {
                 title: 'List of posts',
@@ -23,7 +22,7 @@ router.get('/', function(req, res, next) {
         })
 });
 
-router.get('/create', (req, res, next) => {
+router.post('/create', (req, res, next) => {
     model.Place.findAll()
         .then(places => {
             // console.log(places);
@@ -52,11 +51,20 @@ router.post('/create', (req, res, next) => {
         })
 })
 
-// router.get('/upload', function(req, res, next) {
-//     res.render('file_upload', {
-//         title: 'Express'
-//     });
-// });
+router.get('/delete/:id', (req, res, next) => {
+    let id = req.params.id
+    model.Post.destroy({
+            where: {
+                id: id
+            }
+        })
+        .then(() => {
+            res.redirect('/')
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+})
 
 
 module.exports = router;
