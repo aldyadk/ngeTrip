@@ -23,17 +23,6 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/create', (req, res, next) => {
-    model.Place.findAll()
-        .then(places => {
-            // console.log(places);
-            res.render('create_post', {
-                title: 'Create New Post',
-                dataPlaces: places
-            })
-        })
-})
-
-router.post('/create', (req, res, next) => {
     console.log('Test' + req.body.title);
     console.log(req.body.description);
     console.log(req.body.placeId);
@@ -44,7 +33,8 @@ router.post('/create', (req, res, next) => {
             placeId: req.body.placeId
         })
         .then(() => {
-            res.redirect('/')
+            // window.location.href = 'http://localhost:3000/post';
+            res.redirect('./')
         })
         .catch(err => {
             console.log(err.message);
@@ -66,5 +56,23 @@ router.get('/delete/:id', (req, res, next) => {
         })
 })
 
+router.post('/edit_post/:id', (req, res, next) => {
+    let id = req.params.id
+    model.Post.update({
+            title: req.body.title,
+            description: req.body.description,
+            placeId: req.body.place
+        }, {
+            where: {
+                id: id
+            }
+        })
+        .then(() => {
+            res.redirect('/')
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+})
 
-module.exports = router;
+module.exports = router;;

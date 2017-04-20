@@ -10,6 +10,12 @@
 
 <body>
   <div>
+    <form action="/" method="GET">
+        <button type="submit" name="button">List Place</button>
+    </form>
+  </div>
+
+  <div>
     <form action="/upload" method="POST">
         <button type="submit" name="button">Create New Place</button>
     </form>
@@ -22,7 +28,7 @@
   </div>
 
   <div>
-    <form action="/post/create" method="POST">
+    <form action="/create" method="POST">
         <button type="submit" name="button">Create New Post</button>
     </form>
   </div>
@@ -54,6 +60,7 @@
               } else {
                 let no = 1;
                 dataPosts.forEach(post => {
+                  if(post.Place !== null){
               %>
                         <tr>
                             <td>
@@ -68,11 +75,12 @@
                             <td>
                                 <img src="<%- post.Place.imagePath%>" alt="<%- post.Place.placeName%>" height="100" width="100">
                             </td>
-                            <td><a href="#"><img src="/images/edit.png" alt="Edit" height="30" width="30"></a></td>
+                            <td><a href="/edit_post/<%- post.id%>"><img src="/images/edit.png" alt="Edit" height="30" width="30"></a></td>
                             <td><a href="/post/delete/<%- post.id%>"><img src="/images/delete.png" alt="Edit" height="30" width="30"></a></td>
                         </tr>
                         <%
                             no++;
+                          }
                           })
                         }
                         %>

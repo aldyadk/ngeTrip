@@ -36,4 +36,41 @@ router.get('/edit/:id', (req, res, next) => {
         })
 })
 
+router.post('/create', (req, res, next) => {
+    model.Place.findAll()
+        .then(places => {
+            // console.log(places);
+            res.render('create_post', {
+                title: 'Create New Post',
+                dataPlaces: places
+            })
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+})
+
+router.get('/edit_post/:id', (req, res, next) => {
+    let id = req.params.id
+    model.Post.findById(id)
+        .then(post => {
+            console.log(`Cekkkkk Post: ${post.description}`);
+            model.Place.findAll()
+                .then(places => {
+                    res.render('edit_post', {
+                        title: 'Edit Post',
+                        id: id,
+                        dataPost: post,
+                        dataPlace: places
+                    })
+                })
+                .catch(err => {
+                    console.log(err.message);
+                })
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+})
+
 module.exports = router;
