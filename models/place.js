@@ -11,6 +11,10 @@ module.exports = function(sequelize, DataTypes) {
                 Place.hasMany(models.Post, {
                     foreignKey: 'placeId'
                 })
+
+                Place.hasOne(models.Vote, {
+                    foreignKey: 'placeId'
+                })
             }
         }
     });

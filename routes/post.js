@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
         .then(posts => {
             // console.log('Cobaaaaaaaa' + posts[5].Place);
             res.render('index_post', {
-                title: 'List of posts',
+                title: 'Daftar postingan',
                 dataPosts: posts
             });
         })
@@ -33,8 +33,7 @@ router.post('/create', (req, res, next) => {
             placeId: req.body.placeId
         })
         .then(() => {
-            // window.location.href = 'http://localhost:3000/post';
-            res.redirect('./')
+            res.redirect('/')
         })
         .catch(err => {
             console.log(err.message);

@@ -1,84 +1,68 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>
-        <%= title %>
-    </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title>nge-TRIP</title>
+  <link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
-
 <body>
-    <div>
-      <form action="/upload" method="POST">
-          <button type="submit" name="button">Create New Place</button>
-      </form>
-    </div>
 
-    <div>
+  <div class="navigation">
+    <ul>
+      <li>
+        <form action="/" method="GET">
+          <input type="submit" value="Beranda">
+        </form>
+      </li>
+      <li id="logo">nge-Trip</li>
+      <li>
+        <form action="/post" method="POST">
+          <input type="submit" value="Daftar Postingan">
+        </form>
+      </li>
+    </ul>
+  </div>
+
+  <div id="cover">
+    <div class="cover-content">
+      <h1>Ayo wisata bareng Backpacker</h1>
       <form action="/create" method="POST">
-          <button type="submit" name="button">Create New Post</button>
+          <button type="submit" name="button" class="btn">Tambah Postingan Baru</button>
+      </form><br>
+      <form action="/upload" method="POST">
+          <button type="submit" name="button" class="btn">Tambah Tempat Wisata Baru</button>
       </form>
     </div>
+  </div>
 
-    <div>
-      <form action="/post" method="POST">
-          <button type="submit" name="button">List Post</button>
-      </form>
+  <div class="products">
+    <h3 class="blue"><%- title%></h3>
+    <%
+    if (places.length < 1) {
+    %>
+    <h3 class="blue">Data tidak ada</h3>
+    <%
+    } else {
+    let no = 1;
+    places.forEach(place => {
+    %>
+    <div class="product">
+      <img class="place" src="<%- place.imagePath%>" alt="<%- place.placeName%>">
+      <h3><%- place.placeName%></h3>
+      <p><%- place.description%></p>
+      <a href="/vote/<%- place.id%>"><img src="/images/heart.png" alt="Like"></a>&nbsp;&nbsp;
+      <h4><%- place.Vote.count%></h4>
+      <br><br>
+      <a href="/edit/<%- place.id%>"><img src="/images/edit.png" alt="Edit"></a>
+      <a href="/places/delete/<%- place.id%>" onclick="return confirm('Are you sure want to delete this place?')"><img src="/images/delete.png" alt="Delete" height="30px" width="30px"></a>
     </div>
+    <%
+        no++;
+      })
+    }
+    %>
 
-    <h1><%= title %></h1>
-    <p>Welcome to
-        <%= title %>
-    </p>
+  <h3>Mari bersama-sama memajukan sektor pariwisata Indonesia</h3>
 
-    <div>
-        <table>
-            <thead>
-                <th>No</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th colspan="2">Action</th>
-            </thead>
-            <tbody>
-                <%
-              if (places.length < 1) {
-              %>
-                    <tr>
-                        <td>
-                            <p class="flow-text">Tidak ada data</p>
-                        </td>
-                    </tr>
-                    <%
-              } else {
-                let no = 1;
-                places.forEach(place => {
-              %>
-                        <tr>
-                            <td>
-                                <%- no%>
-                            </td>
-                            <td>
-                                <%- place.placeName%>
-                            </td>
-                            <td>
-                                <%- place.description%>
-                            </td>
-                            <td>
-                                <img src="<%- place.imagePath%>" alt="<%- place.placeName%>" height="100" width="100">
-                            </td>
-                            <td><a href="/edit/<%- place.id%>"><img src="/images/edit.png" alt="Edit" height="30" width="30"></a></td>
-                            <td><a href="/places/delete/<%- place.id%>"><img src="/images/delete.png" alt="Delete" height="30" width="30"></a></td>
-                        </tr>
-                        <%
-                            no++;
-                          })
-                        }
-                        %>
-            </tbody>
-        </table>
-    </div>
 </body>
-
 </html>
