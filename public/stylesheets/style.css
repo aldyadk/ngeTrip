@@ -14,7 +14,7 @@ a {
 }
 
 .create_post {
-  margin-top: 70px;
+  margin-top: 90px;
 }
 
 .text_update {
@@ -27,6 +27,16 @@ a {
   top: -55px;
   width: 100%;
   background: url("/images/bg3.jpg") no-repeat center bottom;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+#cover2 {
+  height: 900px;
+  position: relative;
+  top: -55px;
+  width: 100%;
+  background: url("/images/bg.jpg") no-repeat center bottom;
   background-size: cover;
   background-attachment: fixed;
 }

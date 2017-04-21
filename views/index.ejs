@@ -47,9 +47,8 @@
     places.forEach(place => {
     %>
     <div class="product">
-      <img class="place" src="<%- place.imagePath%>" alt="<%- place.placeName%>">
+      <a href="getPlaceById/<%- place.id%>"><img class="place" src="<%- place.imagePath%>" alt="<%- place.placeName%>"></a>
       <h3><%- place.placeName%></h3>
-      <p><%- place.description%></p>
       <a href="/vote/<%- place.id%>"><img src="/images/heart.png" alt="Like"></a>&nbsp;&nbsp;
       <h4>
         <% if (place.Vote) { %>

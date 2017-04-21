@@ -112,4 +112,22 @@ router.get('/vote/:id', (req, res, next) => {
         })
 })
 
+router.get('/getPlaceById/:id', (req, res, next) => {
+    let id = req.params.id
+    model.Place.findById(id, {
+            include: [model.Vote]
+        })
+        .then(place => {
+            // console.log('wwwwwwwwwww: ' + place);
+            res.render('home', {
+                place: place
+            })
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+})
+
+
+
 module.exports = router;
