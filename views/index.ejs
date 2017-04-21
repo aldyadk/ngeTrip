@@ -51,7 +51,13 @@
       <h3><%- place.placeName%></h3>
       <p><%- place.description%></p>
       <a href="/vote/<%- place.id%>"><img src="/images/heart.png" alt="Like"></a>&nbsp;&nbsp;
-      <h4><%- place.Vote.count%></h4>
+      <h4>
+        <% if (place.Vote) { %>
+            <%= place.Vote.count %>&nbsp;likes
+        <% } else {%>
+          <%= 0 %>&nbsp;likes
+        <%}%>
+      </h4>
       <br><br>
       <a href="/edit/<%- place.id%>"><img src="/images/edit.png" alt="Edit"></a>
       <a href="/places/delete/<%- place.id%>" onclick="return confirm('Are you sure want to delete this place?')"><img src="/images/delete.png" alt="Delete" height="30px" width="30px"></a>

@@ -8,10 +8,10 @@ router.get('/', (req, res, next) => {
             include: [model.Vote]
         })
         .then(places => {
-
+            // console.log(places[0].Vote.count);
             // res.json(places);
             res.render('index', {
-                title: 'kjskj',
+                title: 'Daftar Tempat Wisata',
                 places: places
             })
 
