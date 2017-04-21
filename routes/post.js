@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var model = require('../models')
-const convertDate = require("../helper/convert_time.js");
+const convertDate = require("../helper/convert_time.js").convertDate;
 
 /* GET home page. */
 router.post('/', function(req, res, next) {

@@ -1,22 +1,20 @@
-let convertDate = function(date) {
-    let hours, minutes;
-    let objDate = new Date(date)
-    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des']
-    let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-
-    if (objDate.getHours() < 10) {
-        hours = '0' + objDate.getHours().toString()
-    } else {
-        hours = objDate.getHours().toString()
+module.exports = {
+    convertDate: function(time) {
+        let newTime = new Date(time);
+        let day = newTime.getDay();
+        let date = newTime.getDate();
+        let month = newTime.getMonth();
+        let year = newTime.getFullYear();
+        let hours = newTime.getHours();
+        let rawMinutes = newTime.getMinutes();
+        let minutes = "";
+        if (String(rawMinutes).length === 1) {
+            minutes = "0" + String(rawMinutes);
+        } else {
+            minutes = String(rawMinutes);
+        }
+        let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        return `${days[day]}, ${date}-${months[month]}-${year}, ${hours}:${minutes}`;
     }
-
-    if (objDate.getMinutes() < 10) {
-        minutes = '0' + objDate.getMinutes().toString()
-    } else {
-        minutes = objDate.getMinutes().toString()
-    }
-
-    let newDate = `${days[objDate.getDay()]}, ${months[objDate.getMonth()]} ${objDate.getFullYear()} ${hours}:${minutes}`
-    return newDate
 }
-module.exports = convertDate
