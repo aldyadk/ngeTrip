@@ -51,6 +51,7 @@
       <img class="place" src="<%- post.Place.imagePath%>" alt="<%- post.Place.placeName%>">
       <h3><%- post.Place.placeName%></h3>
       <h4><%- post.title%></h4>
+      <h5>Posted at: <%- post.createdAt%></h5>
       <p><%- post.description%></p>
       <a href="/edit_post/<%- post.id%>"><img src="/images/edit.png" alt="Edit"></a>
       <a href="/post/delete/<%- post.id%>" onclick="return confirm('Are you sure want to delete this post?')"><img src="/images/delete.png" alt="Edit"></a>

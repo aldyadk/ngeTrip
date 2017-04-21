@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var model = require('../models')
+const convertDate = require("../helper/convert_time.js");
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
@@ -12,9 +13,15 @@ router.post('/', function(req, res, next) {
         })
         .then(posts => {
             // console.log('Cobaaaaaaaa' + posts[5].Place);
+            let newData = posts.map(function(record) {
+                record.dataValues.createdAt = convertDate(record.dataValues.createdAt)
+                record.dataValues.updatedAt = convertDate(record.dataValues.updatedAt)
+                return record
+            });
+
             res.render('index_post', {
                 title: 'Daftar postingan',
-                dataPosts: posts
+                dataPosts: newData
             });
         })
         .catch(err => {
