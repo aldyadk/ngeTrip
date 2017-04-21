@@ -23,42 +23,20 @@
     </ul>
   </div>
 
-  <div id="cover">
-    <div class="cover-content">
-      <h1>Ayo wisata bareng Backpacker</h1>
-      <form action="/create" method="POST">
-          <button type="submit" name="button" class="btn">Tambah Postingan Baru</button>
-      </form><br>
-      <form action="/upload" method="POST">
-          <button type="submit" name="button" class="btn">Tambah Tempat Wisata Baru</button>
+  <div class="create_post">
+    <div class="products">
+      <div class="form-style-6">
+      <p class="text_update">Edit Tempat</p>
+      <form method="post" enctype="multipart/form-data" action="/places/edit/<%- id%>">
+      <input type="text" name="placeName" placeholder="Nama Tempat" value="<%- dataPlace.placeName%>"/>
+      <textarea name="description" placeholder="Masukkan deskripsi topik anda"><%- dataPlace.description%></textarea>
+      <label for="file">Input file:</label>
+      <input type="file" name="urlPath">
+      <input type="submit"name="sumbit" value="Edit" />
       </form>
+      </div>
     </div>
   </div>
-
-  <div class="products">
-    <h3 class="blue"><%- title%></h3>
-    <%
-    if (places.length < 1) {
-    %>
-    <h3 class="blue">Data tidak ada</h3>
-    <%
-    } else {
-    let no = 1;
-    places.forEach(place => {
-    %>
-    <div class="product">
-      <img class="place" src="<%- place.imagePath%>" alt="<%- place.placeName%>">
-      <h3><%- place.placeName%></h3>
-      <p><%- place.description%></p>
-      <a href="/vote/<%- place.id%>"><img src="/images/heart.png" alt="Like"></a><br><br>
-      <a href="/edit/<%- place.id%>"><img src="/images/edit.png" alt="Edit"></a>
-      <a href="/places/delete/<%- place.id%>" onclick="return confirm('Are you sure want to delete this place?')"><img src="/images/delete.png" alt="Delete" height="30px" width="30px"></a>
-    </div>
-    <%
-        no++;
-      })
-    }
-    %>
 
   <h3>Mari bersama-sama memajukan sektor pariwisata Indonesia</h3>
 
